@@ -1,27 +1,40 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React from "react";
+import { NavLink } from "react-router-dom";
+import "../styles/NavBar.css";
 
-export class NavBar extends Component {
-  static propTypes = {
-    // second: third
-  }
-
-  render() {
-    return (
-        <div className='nav-bar'>
-            <div className='nav-bar-row-1'>
-                
-            </div>
-            <div className='nav-bar-row-2'>
-
-            </div>
-        </div>
-    )
-  }
+function NavBar() {
+  return (
+    <nav className="nav-list">
+      <NavLink className="nav-link" to="/">
+        Home
+      </NavLink>
+      &nbsp;
+      <NavLink className="nav-link" to="/account">
+        Account
+      </NavLink>
+      &nbsp;
+      <NavLink className="nav-link" to="/transfer-funds">
+        Transfer Funds
+      </NavLink>
+      &nbsp;
+      <NavLink className="nav-link" to="/bills">
+        Pay Bills
+      </NavLink>
+      &nbsp;
+      <NavLink className="nav-link" to="/history">
+        Transaction History
+      </NavLink>
+      &nbsp;
+      <NavLink className="nav-link" to="/login">
+        Login
+      </NavLink>
+      &nbsp;
+      <NavLink className="nav-link" to="/register">
+        Register
+      </NavLink>
+      &nbsp;
+    </nav>
+  );
 }
 
-const mapStateToProps = (state) => ({})
-
-const mapDispatchToProps = {}
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavBar)
+export default NavBar;

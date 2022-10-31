@@ -1,0 +1,28 @@
+/* *,
+:after,
+:before {
+  box-sizing: border-box;
+  margin: 0%;
+  font-family: Gezneva, Tahoma, sans-serif;
+} */
+/* body {
+  background-color: antiquewhite;
+} */
+.nav-list {
+  background-color: cornflowerblue;
+  height: 3rem;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  font-weight: 600;
+}
+.nav-link {
+  align-self: center;
+  color: white;
+  text-decoration-line: none;
+  padding: 2rem;
+  font-size: medium;
+}
+.nav-list-active {
+  color: red;
+}
