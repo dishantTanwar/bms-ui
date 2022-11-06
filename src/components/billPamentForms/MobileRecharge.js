@@ -70,9 +70,10 @@ function MobileRecharge() {
     navigate("/credit-card");
   };
   return (
-    <div className="mobile-recharge">
+    <div className="bill-payment-container">
       <p>{JSON.stringify(mobileRechargeError)}</p>
       <p>{JSON.stringify(data)}</p>
+      <h1 className="center">Mobile Recharge</h1>
       <Form onSubmit={handleSubmit(onSubmit)}>
         {/* <div> */}
         <FormField required inline error={errors.mobileNumber ? true : false}>

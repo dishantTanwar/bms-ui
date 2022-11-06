@@ -5,23 +5,13 @@ function Bills() {
   return (
     <div className="outlet level-2">
       <div className="side-bar">
-        <Link to="mobile-recharge" state={{ billType: "MOBILE_RECHARGE" }}>
+        <Link to="mobile-recharge">
           <strong>Mobile Recharge</strong>
         </Link>
-        <Link
-          to="electricity-bill"
-          state={{
-            billType: "ELECTRICITY",
-          }}
-        >
+        <Link to="electricity-bill">
           <strong>Electricity Bill</strong>
         </Link>
-        <Link
-          to="gas-bill"
-          state={{
-            billType: "GAS",
-          }}
-        >
+        <Link to="gas-bill">
           <strong>Gas Bill</strong>
         </Link>
       </div>
