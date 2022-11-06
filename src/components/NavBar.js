@@ -1,8 +1,16 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import authSlice from "../slices/authSlice";
 import "../styles/NavBar.css";
 
 function NavBar() {
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(authSlice.actions.logout());
+  };
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
   return (
     <nav className="nav-list">
       <NavLink className="nav-link" to="/">
@@ -25,13 +33,23 @@ function NavBar() {
         Transaction History
       </NavLink>
       &nbsp;
-      <NavLink className="nav-link" to="/login">
-        Login
-      </NavLink>
-      &nbsp;
-      <NavLink className="nav-link" to="/register">
-        Register
-      </NavLink>
+      {isLoggedIn ? (
+        <>
+          <NavLink className="nav-link" to="/logout" onClick={handleLogout}>
+            Logout
+          </NavLink>
+        </>
+      ) : (
+        <>
+          <NavLink className="nav-link" to="/login">
+            Login
+          </NavLink>
+          &nbsp;
+          <NavLink className="nav-link" to="/register">
+            Register
+          </NavLink>
+        </>
+      )}
       &nbsp;
     </nav>
   );

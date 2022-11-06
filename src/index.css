@@ -11,10 +11,75 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 } */
+
 *,
 :after,
 :before {
   box-sizing: border-box;
   margin: 0%;
   font-family: Geneva, Tahoma, sans-serif;
+}
+.body-component {
+  /* width: 80%; */
+  /* background-color: chocolate; */
+  margin: auto;
+  /* padding: 2rem; */
+}
+.level-2 {
+  display: flex;
+  flex-direction: row;
+}
+.side-bar {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background-color: greenyellow;
+  padding-left: 2%;
+}
+.outlet {
+  flex-grow: 2;
+  background-color: deepskyblue;
+  /* text-align: center; */
+  display: grid;
+  grid-template-areas: "prop val";
+  align-content: center;
+  justify-content: stretch;
+  justify-items: center;
+  align-items: center;
+}
+
+.prop,
+.val {
+  padding: 0.6rem 0.2rem;
+  padding-left: 1.5rem;
+  justify-self: stretch;
+  border-radius: 3px;
+  border-width: thin;
+  border-style: solid;
+  align-self: center;
+  border-right: 0ch;
+  font-size: medium;
+}
+
+.form-error-message {
+  color: "red";
+  padding-left: 1rem;
+}
+.payment-option {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.bill-details {
+  display: grid;
+  grid-template-areas: "prop val";
+}
+
+.success {
+  color: green;
 }

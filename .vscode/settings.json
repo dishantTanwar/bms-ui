@@ -1,0 +1,10 @@
+{
+  // "editor.fontFamily": "Dank Mono",
+  // "editor.fontFamily": "Fira Code",
+  "editor.fontFamily": "Cascadia Code",
+  "editor.fontLigatures": "'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'zero', 'onum','calt', 'ss01'",
+
+  "editor.fontSize": 15,
+  "editor.fontWeight": "300",
+  "editor.lineHeight": 29
+}

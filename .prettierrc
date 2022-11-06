@@ -1,1 +1,1 @@
-{ "config": true }
+{ "config": true, "bracketSpacing": true, "useTabs": false }

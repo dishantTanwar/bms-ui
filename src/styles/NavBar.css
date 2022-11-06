@@ -10,7 +10,7 @@
 } */
 .nav-list {
   background-color: cornflowerblue;
-  height: 3rem;
+  height: 4rem;
   display: flex;
   justify-content: flex-start;
   width: 100%;
@@ -25,4 +25,8 @@
 }
 .nav-list-active {
   color: red;
+}
+.nav-link:hover {
+  font-size: 1.2rem;
+  font-stretch: expanded;
 }
