@@ -51,10 +51,7 @@ function GasBill() {
             bill: payload,
           })
         );
-        navigate({
-          to: "/bill-payment-success",
-          state: { amount: register.amount },
-        });
+        navigate("/bill-payment-success");
       })
       .catch((error) => {
         console.error("rejected", error);
