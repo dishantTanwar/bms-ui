@@ -30,7 +30,7 @@ function AccountDetails() {
       <div className="prop">Security Question</div>
       <div className="val">{data.securityQuestion}</div>
       <div className="prop">Answer</div>
-      <div className="val">{data.answer}</div>
+      <div className="val">*****</div>
       <div className="prop">Username</div>
       <div className="val">{data.userName}</div>
     </div>

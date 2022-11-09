@@ -19,7 +19,7 @@ function BillPaymentSuccess() {
       <div className="bill-details">
         {/* bill id */}
 
-        <div className="prop">id</div>
+        <div className="prop">Bill id</div>
         <div className="val">{bills.bill.id}</div>
 
         {/* username */}
@@ -47,6 +47,8 @@ function BillPaymentSuccess() {
         <div className="val">{bills.bill.cardType}</div>
 
         {/* card number */}
+        <div className="prop">card number</div>
+        <div className="val">{bills.bill.cardNumber}</div>
       </div>
     </div>
   );

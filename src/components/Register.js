@@ -17,7 +17,9 @@ function Register() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    mode: "onChange",
+  });
   const onSubmit = async (data, e) => {
     console.log("submit register error: ", e);
     const signupRequestBody = {
@@ -48,7 +50,7 @@ function Register() {
 
   return (
     <div className="register">
-      <h1>Register User</h1>
+      <h1 className="center">Register User</h1>
       {/* <h2>{ accounts}</h2> */}
       <Form onSubmit={handleSubmit(onSubmit)}>
         {isSuccess ? () => <h2>LOGIN SUCCESS {user}</h2> : ""}
@@ -56,7 +58,7 @@ function Register() {
         {isError ? () => <div>{error}</div> : ""}
 
         {/* First NAme */}
-        <Form.Field>
+        <Form.Field inline>
           <label>First Name</label>
           <input
             placeholder="First Name"
@@ -69,7 +71,7 @@ function Register() {
         )}
 
         {/* Last Name */}
-        <Form.Field>
+        <Form.Field inline>
           <label>Last Name</label>
           <input
             placeholder="Last Name"
@@ -83,7 +85,7 @@ function Register() {
 
         {/* Email */}
 
-        <Form.Field>
+        <Form.Field inline>
           <label>Email</label>
           <input
             placeholder="Email"
@@ -95,11 +97,11 @@ function Register() {
             })}
           />
         </Form.Field>
-        {errors.email && <p className="text-error">Please check the Email</p>}
+        {errors.emailId && <p className="text-error">Please check the Email</p>}
 
         {/* Password */}
 
-        <Form.Field>
+        <Form.Field inline>
           <label>Password</label>
           <input
             placeholder="Password"
@@ -113,7 +115,7 @@ function Register() {
         {errors.password && (
           <p className="text-error">Password should have more than 7 letters</p>
         )}
-        {/* <Form.Field>
+        {/* <Form.Field inline>
           <label>Confirm Password</label>
           <input
             placeholder="Confirm Password"
@@ -128,8 +130,8 @@ function Register() {
           <p className="text-error">Please check the Password</p>
         )} */}
         {/* Username */}
-        <Form.Field>
-          <label>Username</label>
+        <Form.Field inline>
+          <label>Usernam / Phone Number</label>
           <input
             placeholder="Username"
             type="text"
@@ -139,10 +141,10 @@ function Register() {
             })}
           />
         </Form.Field>
-        {errors.username && (
+        {errors.userName && (
           <p className="text-error">Username should have 10 digits</p>
         )}
-        <Form.Field>
+        <Form.Field inline>
           <label>Security Question</label>
           <input
             placeholder="Security Question"
@@ -158,7 +160,7 @@ function Register() {
         )}
         {/*  Security Answer */}
 
-        <Form.Field>
+        <Form.Field inline>
           <label>Security Answer</label>
           <input
             placeholder="Security Answer"
@@ -169,10 +171,10 @@ function Register() {
             })}
           />
         </Form.Field>
-        {errors.securityAnswer && (
+        {errors.answer && (
           <p className="text-error">Security Answer should have min 3 size</p>
         )}
-        <Form.Field>
+        <Form.Field inline>
           <label>Date of Birth</label>
           <input
             placeholder="Date of Birth"
@@ -185,7 +187,7 @@ function Register() {
         {errors.dateOfBirth && (
           <p className="text-error">Date of Birth is required</p>
         )}
-        <Form.Button content="Register" />
+        <Form.Button className="center" content="Register" primary />
       </Form>
     </div>
   );

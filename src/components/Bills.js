@@ -5,13 +5,13 @@ function Bills() {
   return (
     <div className="outlet level-2">
       <div className="side-bar">
-        <Link to="mobile-recharge">
+        <Link className="row" to="mobile-recharge">
           <strong>Mobile Recharge</strong>
         </Link>
-        <Link to="electricity-bill">
+        <Link className="row" to="electricity-bill">
           <strong>Electricity Bill</strong>
         </Link>
-        <Link to="gas-bill">
+        <Link className="row" to="gas-bill">
           <strong>Gas Bill</strong>
         </Link>
       </div>

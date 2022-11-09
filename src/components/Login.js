@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button, Form, Grid, Header, Message } from "semantic-ui-react";
 import { useLoginMutation } from "../backend-api/authApi";
 
@@ -17,7 +17,9 @@ function Login(props) {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    mode: "all",
+  });
 
   const dispatch = useDispatch();
   let tempErrors = "";
@@ -86,7 +88,7 @@ function Login(props) {
       <Grid.Column>
         <Header
           as="h2"
-          textAlign="center"
+          // textAlign="center"
           image={MANUTD_LOGO}
           content="Login"
           style={{ marginBottom: "32px" }}
@@ -130,12 +132,18 @@ function Login(props) {
               />
             </Form.Field>
             {errors.password && (
-              <p className="text-error">Please check the Password</p>
+              <p className="text-error">
+                Password should be alpha-numeric whith atleast one special
+                character
+              </p>
             )}
-            <Button type="submit" color="blue">
-              Submit
+            <Button type="submit" color="blue" loading={isLoading}>
+              Login
             </Button>
           </Form>
+          <p className="center">
+            Don't have an account? <Link to={"/register"}>&nbsp;Signup</Link>
+          </p>
         </div>
       </Grid.Column>
     </Grid>

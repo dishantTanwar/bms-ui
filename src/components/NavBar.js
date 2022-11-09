@@ -1,13 +1,15 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import authSlice from "../slices/authSlice";
 import "../styles/NavBar.css";
 
 function NavBar() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleLogout = () => {
     dispatch(authSlice.actions.logout());
+    navigate("/home");
   };
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
@@ -17,25 +19,24 @@ function NavBar() {
         Home
       </NavLink>
       &nbsp;
-      <NavLink className="nav-link" to="/account">
-        Account
-      </NavLink>
-      &nbsp;
-      <NavLink className="nav-link" to="/transfer-funds">
-        Transfer Funds
-      </NavLink>
-      &nbsp;
-      <NavLink className="nav-link" to="/bills">
-        Pay Bills
-      </NavLink>
-      &nbsp;
-      <NavLink className="nav-link" to="/history">
-        Transaction History
-      </NavLink>
-      &nbsp;
       {isLoggedIn ? (
         <>
-          <NavLink className="nav-link" to="/logout" onClick={handleLogout}>
+          <NavLink className="nav-link" to="/account">
+            Account
+          </NavLink>
+          &nbsp;
+          <NavLink className="nav-link" to="/transfer-funds">
+            Transfer Funds
+          </NavLink>
+          &nbsp;
+          <NavLink className="nav-link" to="/bills">
+            Pay Bills
+          </NavLink>
+          &nbsp;
+          <NavLink className="nav-link" to="/history">
+            Transaction History
+          </NavLink>
+          <NavLink className="nav-link" to="/login" onClick={handleLogout}>
             Logout
           </NavLink>
         </>
