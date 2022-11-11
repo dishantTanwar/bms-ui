@@ -1,4 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAction, createSlice } from "@reduxjs/toolkit";
+import authSlice from "./authSlice";
+const logout = createAction("logout");
 
 const initialProductsState = {
   isSelected: false,
@@ -28,6 +30,12 @@ const beneficiarySlice = createSlice({
       console.log("Beneficiary ADDED: payload: ", action.payload);
       state.beneficiary = action.payload;
       state.isSelected = true;
+    },
+  },
+  extraReducers: {
+    [authSlice.actions.logout]: (state, action) => {
+      console.log("inside beneficiary slice: extra reducer");
+      return initialProductsState;
     },
   },
 });

@@ -19,6 +19,7 @@ const authSlice = createSlice({
       state.user = action.payload.user;
     },
     logout: (state) => {
+      console.log("inside AuthSlice logout");
       state.token = "";
       delete localStorage.token;
       state.user = {};

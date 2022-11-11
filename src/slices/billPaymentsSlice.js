@@ -1,5 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAction, createSlice } from "@reduxjs/toolkit";
 
+const logout = createAction("logout");
 const initialState = {
   isSuccess: false,
   bill: {
@@ -36,6 +37,11 @@ const billPaymentsSlice = createSlice({
       state.error = payload.error;
     },
   },
+  extraReducers: (builder) =>
+    builder.addCase(logout, () => {
+      console.log("inside AccountSlice extra reducers lgout");
+      return initialState;
+    }),
 });
 
 export default billPaymentsSlice;

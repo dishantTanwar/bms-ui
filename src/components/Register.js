@@ -40,9 +40,7 @@ function Register() {
     } catch (err) {
       console.error("Failed to signup: ", err);
     } finally {
-      if (isSuccess) {
-        navigate("/");
-      }
+      navigate("/");
     }
   };
 
@@ -131,7 +129,7 @@ function Register() {
         )} */}
         {/* Username */}
         <Form.Field inline>
-          <label>Usernam / Phone Number</label>
+          <label>Username / Phone Number</label>
           <input
             placeholder="Username"
             type="text"
@@ -187,7 +185,12 @@ function Register() {
         {errors.dateOfBirth && (
           <p className="text-error">Date of Birth is required</p>
         )}
-        <Form.Button className="center" content="Register" primary />
+        <Form.Button
+          className="center"
+          content="Register"
+          type="submit"
+          primary
+        />
       </Form>
     </div>
   );

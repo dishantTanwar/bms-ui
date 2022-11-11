@@ -47,6 +47,7 @@ function SelectBeneficiary() {
                   <td>{benef.ifsc}</td>
                   <td>
                     <input
+                      name="beneficiary"
                       className="center"
                       onClick={() => {
                         setSelectBeneficiary(benef);
@@ -86,7 +87,9 @@ function SelectBeneficiary() {
             Cancel
           </button>
         </>
-      ) : null}
+      ) : (
+        <p>No beneficiary found! Please add one</p>
+      )}
     </div>
   );
 }

@@ -11,7 +11,6 @@ import "./index.css";
 import accountsSlice from "./slices/accountsSlice";
 import authSlice from "./slices/authSlice";
 
-import logger from "redux-logger";
 import { billPaymentApi } from "./backend-api/billPaymentsApi";
 import { fundsTransferApi } from "./backend-api/fundsTransferApi";
 import beneficiarySlice from "./slices/beneficiarySlice";
@@ -40,7 +39,7 @@ export const store = configureStore({
       authApi.middleware,
       billPaymentApi.middleware,
       fundsTransferApi.middleware,
-      logger,
+      // logger,
     ]),
 });
 
