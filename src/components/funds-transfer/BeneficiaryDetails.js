@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -12,6 +12,7 @@ function BeneficiaryDetails(props) {
   const user = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [alreadyExists, setAlreadyExists] = useState(false);
   const [
     addBeneficiary,
     { isLoading, isSuccess, data, error: responseError, isError },
@@ -35,13 +36,26 @@ function BeneficiaryDetails(props) {
   });
 
   const onSubmit = (body) => {
-    console.log("bill-data:", body);
+    console.log("add-beneficiar-form-body:", body);
     addBeneficiary(body)
       .unwrap()
       .then((payload) => {
-        console.log("ADD Beneficiary SUCCESS: ", payload);
-        dispatch(beneficiarySlice.actions.addBeneficiary(body));
-        navigate("..", { relative: "path" });
+        if (payload === null) {
+          console.log("beneficiary already exists");
+          setAlreadyExists(true);
+          dispatch(beneficiarySlice.actions.unSelectBeneficiary());
+          navigate("..", {
+            relative: "path",
+            state: { message: "already exists" },
+          });
+        } else {
+          console.log("ADD Beneficiary SUCCESS: ", payload);
+          dispatch(beneficiarySlice.actions.addBeneficiary(payload));
+          navigate("..", {
+            relative: "path",
+            state: { message: "successfull added" },
+          });
+        }
       })
       .catch((error) => {
         console.error("ADD Beneficiary FAILED!!!!!!", error);

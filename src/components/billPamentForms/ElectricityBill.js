@@ -2,13 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {
-  Button,
-  ButtonGroup,
-  ButtonOr,
-  Form,
-  FormField,
-} from "semantic-ui-react";
+import { Button, ButtonGroup, Form, FormField } from "semantic-ui-react";
 import { useElectricityBillPaymentMutation } from "../../backend-api/billPaymentsApi";
 import "../../index.css";
 import billPaymentsSlice from "../../slices/billPaymentsSlice";
@@ -147,14 +141,14 @@ function ElectricityBill() {
               primary
               type="submit"
             />
-            <ButtonOr />
+            {/* <ButtonOr />
             <Button
               loading={isLoading}
               id="form-button-control-public"
               content="Credit Card"
               onClick={handleCreditCard}
               secondary
-            />
+            /> */}
           </ButtonGroup>
         </div>
       </Form>

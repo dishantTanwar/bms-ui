@@ -13,9 +13,14 @@ function SelectBeneficiary() {
 
   const [selectedBeneficiary, setSelectBeneficiary] = useState({});
 
-  const { isFetching, isSuccess, data, isLoading, error, isError } =
+  const { isFetching, isSuccess, data, isLoading, error, isError, refetch } =
     useGetBeneficiariesQuery(userName);
   useEffect(() => {
+    console.log("inside select beneficiary");
+    refetch();
+    console.log("refetch SUCCESS");
+    // dispatch(fundsTransferApi.internalActions.onFocus());
+
     dispatch(beneficiarySlice.actions.unSelectBeneficiary);
   }, [location]);
   return (

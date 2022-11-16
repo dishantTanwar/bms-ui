@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 function SelectedBeneficiary(props) {
   const { isSelected, beneficiary } = useSelector((state) => state.beneficiary);
   return !isSelected ? (
-    <p>Please select a beneficiary</p>
+    <p>Please select beneficiary</p>
   ) : (
     <table>
       <colgroup>

@@ -1,37 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useGetTransactionsQuery } from "../backend-api/fundsTransferApi";
 
 function TransactionHistory() {
   const userName = useSelector((state) => state.auth.user.userName);
-  const { isError, isSuccess, data, isFetching, error } =
+  const { isError, isSuccess, data, isFetching, error, refetch } =
     useGetTransactionsQuery(userName);
-
-  const x = [
-    {
-      id: 0,
-      fromPhoneNumber: "2900813788",
-      timestamp: "2022-11-06T20:31:43.440Z",
-      amount: 0,
-      beneficiary: {
-        id: 0,
-        benefactorPhoneNumber: "3355408054",
-        name: "string",
-        phoneNumber: "7339877540",
-        accountNumber: 0,
-        ifsc: "JNKW5795096",
-      },
-    },
-  ];
-  // const transactions = useEffect(() => {
-  //   data.map((transaction) => ({
-  //     timestamp: transaction.timestamp,
-  //     to: transaction.beneficiary.name,
-  //     amount: transaction.amount,
-  //   }));
-  // }, [isFetching]);
+  useEffect(() => {
+    refetch();
+  }, []);
   return (
-    <div>
+    <div className="transaction-history">
       {/* <h1>TransactionHistory</h1> */}
       {isFetching && <p>Fetching....</p>}
       {isError && <p>{error}</p>}
@@ -41,7 +20,7 @@ function TransactionHistory() {
           <table>
             <thead>
               <tr>
-                <th colspan="4">Transaction History</th>
+                <th colSpan="4">Transaction History</th>
               </tr>
               <tr>
                 <th>Transaction ID</th>

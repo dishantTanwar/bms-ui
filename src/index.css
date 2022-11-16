@@ -23,7 +23,7 @@ code {
   /* width: 80%; */
   background-color: oldlace;
   margin: auto;
-  height: 100vh;
+  min-height: 100vh;
 
   /* padding: 2rem; */
 }
@@ -53,6 +53,7 @@ code {
   justify-content: stretch;
   justify-items: center;
   align-items: center;
+  padding-top: 1rem;
 }
 
 .prop,
@@ -153,4 +154,18 @@ tr:nth-child(odd) td {
 
 caption {
   padding: 10px;
+}
+footer {
+  display: flex;
+  border-top: 1px solid #10162f;
+  background-color: #fff0e5;
+  height: 4rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.transaction-history {
+}
+.funds-transfer-container {
+  padding-top: 1rem;
 }

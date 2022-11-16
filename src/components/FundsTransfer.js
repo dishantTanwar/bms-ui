@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { Button, Form, FormField } from "semantic-ui-react";
 import { useTransferFundsMutation } from "../backend-api/fundsTransferApi";
@@ -10,10 +10,9 @@ function FundsTransfer() {
   const beneficiary = useSelector((state) => state.beneficiary.beneficiary);
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const location = useLocation();
 
-  const [transferFunds, { isLoading, isSuccess, data, error: responseError }] =
+  const [transferFunds, { isLoading, error: responseError }] =
     useTransferFundsMutation();
   const [isSelecting, setIsSelecting] = useState(false);
   const {
@@ -41,6 +40,8 @@ function FundsTransfer() {
   });
   const onSubmit = (body) => {
     body.beneficiary = beneficiary;
+    console.log("Beneficiar in store:", beneficiary);
+
     console.log("Funds Transfer request:", body);
     if (body.securityAnswer.toLowerCase() !== user.answer.toLowerCase()) {
       console.log("Sec q&A didnt match");
@@ -62,7 +63,7 @@ function FundsTransfer() {
   };
   return (
     <div className="level-2 flex-col">
-      <div className="bill-payment-container flex-col">
+      <div className="funds-transfer-container flex-col">
         <h1 className="center">Transfer Funds</h1>
         <div className="flex-col">
           <Form className="flex-form" onSubmit={handleSubmit(onSubmit)}>
@@ -152,6 +153,8 @@ function FundsTransfer() {
               </Link> */}
               </FormField>
             </div>
+            {console.log("location: ", location)}
+            {location?.state?.message && <p>{location.state.message}</p>}
             <Outlet className="outlet level-3" />
             &nbsp;
             <div className="payment-option">

@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Form, Grid, Header, Message } from "semantic-ui-react";
 import { useLoginMutation } from "../backend-api/authApi";
@@ -25,7 +25,12 @@ function Login(props) {
   let tempErrors = "";
   const [login, { isSuccess, isLoading, isError, error: loginErrors, status }] =
     useLoginMutation();
-
+  const auth = useSelector((state) => state.auth);
+  useEffect(() => {
+    if (auth.user) {
+      navigate("/home");
+    }
+  });
   const onSubmit = async (data) => {
     console.log(data);
     const usernameAndPassword = {
@@ -71,9 +76,8 @@ function Login(props) {
               user: data,
             })
           );
+          navigate("/home");
         });
-
-        navigate("/home");
       }
       if (error.message === "INVALID_CREDENTIALS") {
         console.log("token is: ", error.data);

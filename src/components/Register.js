@@ -6,6 +6,7 @@ import "../styles/Register.css";
 
 import { useNavigate } from "react-router-dom";
 import { useSignupMutation } from "../backend-api/accounts";
+import { SECURITY_QUESTIONS, validateUserIsAdult } from "../utils";
 function Register() {
   const { auth, accounts } = useSelector((store) => store);
   const navigate = useNavigate();
@@ -33,14 +34,13 @@ function Register() {
       dateOfBirth: data.dateOfBirth,
     };
     console.log(signupRequestBody);
-
     try {
       // const response = await signup(signupRequestBody).unwrap();
       await signup(signupRequestBody).unwrap();
     } catch (err) {
       console.error("Failed to signup: ", err);
     } finally {
-      navigate("/");
+      navigate("/home");
     }
   };
 
@@ -144,14 +144,22 @@ function Register() {
         )}
         <Form.Field inline>
           <label>Security Question</label>
-          <input
-            placeholder="Security Question"
-            type="text"
+          <select
+            required
+            name="securityQuestion"
+            placeholder="Choose Security Question"
             {...register("securityQuestion", {
               required: true,
               minLength: 3,
             })}
-          />
+          >
+            <option disabled>-- Choose Security Question --</option>
+            {SECURITY_QUESTIONS.map((q) => (
+              <option value={q.value} key={q.key}>
+                {q.text}
+              </option>
+            ))}
+          </select>
         </Form.Field>
         {errors.securityQuestion && (
           <p className="text-error">Security Question should have min 3 size</p>
@@ -179,11 +187,17 @@ function Register() {
             type="date"
             {...register("dateOfBirth", {
               required: true,
+              validate: validateUserIsAdult,
             })}
           />
         </Form.Field>
-        {errors.dateOfBirth && (
+        {errors?.dateOfBirth?.type === "required" && (
           <p className="text-error">Date of Birth is required</p>
+        )}
+        {errors?.dateOfBirth?.type === "validate" && (
+          <p className="text-error">
+            Mininum required age to register si 18 years
+          </p>
         )}
         <Form.Button
           className="center"

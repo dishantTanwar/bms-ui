@@ -31,6 +31,10 @@ const beneficiarySlice = createSlice({
       state.beneficiary = action.payload;
       state.isSelected = true;
     },
+    alreadyExists: (state, action) => {
+      // Note: action.payload is an object with properties {description, price}.
+      console.log("Beneficiary already exists: ", action);
+    },
   },
   extraReducers: {
     [authSlice.actions.logout]: (state, action) => {

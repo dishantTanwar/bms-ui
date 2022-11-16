@@ -25,6 +25,7 @@ import GasBill from "./billPamentForms/GasBill";
 import MobileRecharge from "./billPamentForms/MobileRecharge";
 import BillPaymentFailed from "./BillPaymentFailed";
 import BillPaymentSuccess from "./BillPaymentSuccess";
+import Footer from "./Footer";
 import BeneficiaryDetails from "./funds-transfer/BeneficiaryDetails";
 import SelectBeneficiary from "./funds-transfer/SelectBeneficiary";
 import SelectedBeneficiary from "./funds-transfer/SelectedBeneficiary";
@@ -64,14 +65,6 @@ function App() {
           <h1>Loading</h1>
         ) : (
           <div className="App">
-            {/* {isLoading ? (
-        <h3>app is loading</h3>
-      ) : (
-        <>
-          <h3>Data is: </h3>
-          <p>{JSON.stringify(data)} </p>
-        </>
-      )} */}
             <NavBar />
             <div className="body-component">
               <Routes>
@@ -154,6 +147,7 @@ function App() {
                 <Route exact path="*" element={<PageNotFound />} />
               </Routes>
             </div>
+            <Footer />
           </div>
         )}
       </div>
