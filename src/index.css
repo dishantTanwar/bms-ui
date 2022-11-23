@@ -53,9 +53,22 @@ code {
   justify-content: stretch;
   justify-items: center;
   align-items: center;
-  padding-top: 1rem;
+  /* padding-top: 1rem; */
 }
-
+.card-container {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+.card {
+  background-color: lavenderblush;
+  border: 1px solid gray;
+  padding: 2rem 5rem;
+  border-radius: 2rem;
+}
+strong {
+  font-weight: 500;
+}
 .prop,
 .val {
   padding: 0.6rem 0.2rem;

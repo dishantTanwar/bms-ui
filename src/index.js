@@ -12,6 +12,7 @@ import accountsSlice from "./slices/accountsSlice";
 import authSlice from "./slices/authSlice";
 
 import { billPaymentApi } from "./backend-api/billPaymentsApi";
+import { cardsApi } from "./backend-api/cardsApi";
 import { fundsTransferApi } from "./backend-api/fundsTransferApi";
 import beneficiarySlice from "./slices/beneficiarySlice";
 import billPaymentsSlice from "./slices/billPaymentsSlice";
@@ -30,6 +31,7 @@ export const store = configureStore({
     [billPaymentApi.reducerPath]: billPaymentApi.reducer,
     [authApi.reducerPath]: authApi.reducer,
     [fundsTransferApi.reducerPath]: fundsTransferApi.reducer,
+    [cardsApi.reducerPath]: cardsApi.reducer,
   },
   // middleware: (getDefaultMiddleware) =>
   //   getDefaultMiddleware().concat(sagaMiddleware),
@@ -39,6 +41,8 @@ export const store = configureStore({
       authApi.middleware,
       billPaymentApi.middleware,
       fundsTransferApi.middleware,
+      cardsApi.middleware,
+
       // logger,
     ]),
 });

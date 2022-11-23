@@ -27,8 +27,8 @@ function Login(props) {
     useLoginMutation();
   const auth = useSelector((state) => state.auth);
   useEffect(() => {
-    if (auth.user) {
-      navigate("/home");
+    if (auth.user && auth.isLoggedIn) {
+      // navigate("/home");
     }
   });
   const onSubmit = async (data) => {

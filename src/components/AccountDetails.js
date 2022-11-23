@@ -4,12 +4,14 @@ import { parseJwt } from "../utils";
 
 function AccountDetails() {
   const userName = parseJwt(localStorage.token).sub;
-  const { isLoading, isSuccess, data, isError, error } =
+  const { isLoading, isFetching, data, isError, error } =
     useGetAccountDetailsQuery(userName);
 
   return (
     <div className="outlet">
       {isLoading ? <h3>Account details are loading</h3> : null}
+      {isFetching ? <h3>Fetching account details..</h3> : null}
+
       {isError ? (
         <>
           <h3>Opps...Met some error</h3> console.error(error);

@@ -25,6 +25,7 @@ import GasBill from "./billPamentForms/GasBill";
 import MobileRecharge from "./billPamentForms/MobileRecharge";
 import BillPaymentFailed from "./BillPaymentFailed";
 import BillPaymentSuccess from "./BillPaymentSuccess";
+import Cards from "./Cards";
 import Footer from "./Footer";
 import BeneficiaryDetails from "./funds-transfer/BeneficiaryDetails";
 import SelectBeneficiary from "./funds-transfer/SelectBeneficiary";
@@ -35,21 +36,15 @@ const PageNotFound = () => <div>Page not Found (404)</div>;
 
 function App() {
   const userName = parseJwt(localStorage.token).sub;
-  const { data, error, isLoading, isSuccess } =
+  const { data, isFetching, isLoading, isSuccess } =
     useGetAccountDetailsQuery(userName);
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const navigate = useNavigate();
 
   let location = useLocation();
-
-  useEffect(() => {
-    if (!["/login", "/register"].includes(location.pathname) && !isLoggedIn) {
-      navigate("/login");
-    }
-    // console.log("location is: ", location);
-  }, [location]);
   if (isSuccess && data.userName === userName) {
+    console.log("isSuccess in APP,", isSuccess);
     dispatch(
       authSlice.actions.loginSuccess({
         token: localStorage.token,
@@ -57,6 +52,19 @@ function App() {
       })
     );
   }
+  useEffect(() => {
+    if (
+      !["/login", "/register"].includes(location.pathname) &&
+      !isSuccess &&
+      !isFetching
+    ) {
+      // delete localStorage.token;
+      dispatch(authSlice.actions.logout);
+      console.log("navigation is happening");
+      navigate("/login");
+    }
+    // console.log("location is: ", location);
+  }, [location]);
 
   return (
     <div>
@@ -80,6 +88,7 @@ function App() {
                     element={<AccountDetails />}
                   />
                   <Route exact path="view-balance" element={<ViewBalance />} />
+                  <Route exact path="cards" element={<Cards />} />
                 </Route>
 
                 {/* Funds Transfer */}
