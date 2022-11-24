@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { Form } from "semantic-ui-react";
@@ -17,30 +17,39 @@ function Register() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm({
     mode: "onChange",
   });
+  const [doesPasswordMatch, setDoesPasswordMatch] = useState(true);
   const onSubmit = async (data, e) => {
-    console.log("submit register error: ", e);
-    const signupRequestBody = {
-      userName: data.userName,
-      firstName: data.firstName,
-      lastName: data.lastName,
-      emailId: data.emailId,
-      securityQuestion: data.securityQuestion,
-      answer: data.answer,
-      password: data.password,
-      dateOfBirth: data.dateOfBirth,
-    };
-    console.log(signupRequestBody);
-    try {
-      // const response = await signup(signupRequestBody).unwrap();
-      await signup(signupRequestBody).unwrap();
-    } catch (err) {
-      console.error("Failed to signup: ", err);
-    } finally {
-      navigate("/home");
+    if (data.password === data.confirmPassword) {
+      delete data.confirmPassword;
+      console.log("submit register error: ", e);
+      const signupRequestBody = {
+        userName: data.userName,
+        firstName: data.firstName,
+        lastName: data.lastName,
+        emailId: data.emailId,
+        securityQuestion: data.securityQuestion,
+        answer: data.answer,
+        password: data.password,
+        dateOfBirth: data.dateOfBirth,
+      };
+      console.log(signupRequestBody);
+
+      try {
+        // const response = await signup(signupRequestBody).unwrap();
+        await signup(signupRequestBody).unwrap();
+      } catch (err) {
+        console.error("Failed to signup: ", err);
+      } finally {
+        navigate("/home");
+      }
+    } else {
+      console.log("passwords did not match");
+      setDoesPasswordMatch(false);
     }
   };
 
@@ -113,7 +122,7 @@ function Register() {
         {errors.password && (
           <p className="text-error">Password should have more than 7 letters</p>
         )}
-        {/* <Form.Field inline>
+        <Form.Field inline>
           <label>Confirm Password</label>
           <input
             placeholder="Confirm Password"
@@ -121,12 +130,29 @@ function Register() {
             {...register("confirmPassword", {
               required: true,
               pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,15}$/,
+              onChange: () => {
+                const password = watch("password");
+                const confirmPassword = watch("confirmPassword");
+                if (password !== confirmPassword) {
+                  setDoesPasswordMatch(false);
+                } else {
+                  setDoesPasswordMatch(true);
+                }
+              },
             })}
           />
         </Form.Field>
-        {errors.confirmPassword && (
-          <p className="text-error">Please check the Password</p>
-        )} */}
+        {errors.confirmPassword &&
+          errors.confirmPassword.type === "pattern" && (
+            <p className="text-error">
+              Password should have more than 7 letters. With atleast one
+              uppecase, one special symbol and one number
+            </p>
+          )}
+        {!doesPasswordMatch && (
+          <p className="text-error">Password did not match</p>
+        )}
+
         {/* Username */}
         <Form.Field inline>
           <label>Username / Phone Number</label>

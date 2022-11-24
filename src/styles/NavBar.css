@@ -10,7 +10,7 @@
 } */
 .nav-list {
   background-color: cornflowerblue;
-  height: 4rem;
+  /* height: 4rem; */
   display: flex;
   justify-content: flex-start;
   width: 100%;

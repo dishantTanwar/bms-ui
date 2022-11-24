@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
+import { MANUTD_LOGO } from "../constants";
 import authSlice from "../slices/authSlice";
 import "../styles/NavBar.css";
 
@@ -16,7 +17,12 @@ function NavBar() {
   return (
     <nav className="nav-list">
       <NavLink className="nav-link" to="/">
-        Home
+        <img
+          // textAlign="center"
+          className="logo-img"
+          src={MANUTD_LOGO}
+          alt="bank logo"
+        />
       </NavLink>
       &nbsp;
       {isLoggedIn ? (

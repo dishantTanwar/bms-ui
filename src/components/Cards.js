@@ -28,24 +28,28 @@ function Cards() {
         <h1 className="center">Your Card</h1>
         <div className="card">
           <h3>Bank of Manchester</h3>
-          <strong>{`${user.firstName} ${user.lastName}`}</strong>
+
+          {/* <p>{`${myCard.cardno.toString().slice(0, 4)}-${myCard.cardno
+            .toString()
+            .slice(4, 8)}-${myCard.cardno
+            .toString()
+            .slice(8, 12)}-${myCard.cardno.toString().slice(12)}`}</p> */}
+          <p className="center">{`${8978} - XXXX - XXXX - ${myCard.cardno
+            .toString()
+            .slice(12)}`}</p>
           <div className="flex-row center">
             <p
               style={{
                 paddingRight: "1rem",
               }}
             >
-              <strong>VAID THRU</strong> {myCard.validthru}
+              <strong>VAlID THRU</strong> {myCard.validthru}
             </p>
             <p>
               <strong>CVV</strong> {myCard.cvv}
             </p>
           </div>
-          <p>{`${myCard.cardno.toString().slice(0, 4)}-${myCard.cardno
-            .toString()
-            .slice(4, 8)}-${myCard.cardno
-            .toString()
-            .slice(8, 12)}-${myCard.cardno.toString().slice(12)}`}</p>
+          <strong>{`${user.firstName} ${user.lastName}`}</strong>
         </div>
       </div>
     </div>

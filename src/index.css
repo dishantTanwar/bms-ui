@@ -24,6 +24,7 @@ code {
   background-color: oldlace;
   margin: auto;
   min-height: 100vh;
+  padding: 0 2rem;
 
   /* padding: 2rem; */
 }
@@ -181,4 +182,14 @@ footer {
 }
 .funds-transfer-container {
   padding-top: 1rem;
+}
+.bill-payment-container {
+  display: flex;
+  flex-direction: column;
+  padding-right: 30%;
+}
+
+.logo-img {
+  height: 3rem;
+  width: 3rem;
 }

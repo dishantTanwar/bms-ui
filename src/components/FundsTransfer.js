@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
-import { Button, Form, FormField } from "semantic-ui-react";
+import { Button, ButtonGroup, Form, FormField } from "semantic-ui-react";
 import { useTransferFundsMutation } from "../backend-api/fundsTransferApi";
 
 function FundsTransfer() {
@@ -47,6 +47,15 @@ function FundsTransfer() {
       console.log("Sec q&A didnt match");
       console.log("Original: ", user.answer);
       console.log("Yours: ", body.securityAnswer);
+      navigate("/transfer-funds/failed", {
+        state: {
+          data: {
+            message: "Invalid Credentials",
+            status: "Wrong Security Password ",
+          },
+          status: 401,
+        },
+      });
     } else {
       delete body.securityAnswer;
       transferFunds(body)
@@ -158,14 +167,30 @@ function FundsTransfer() {
             <Outlet className="outlet level-3" />
             &nbsp;
             <div className="payment-option">
-              <h3 className="center">Press button below to tranfer funds</h3>
-              <Button
-                loading={isLoading}
-                id="tf-form-button-control-public"
-                content="Transfer Funds"
-                primary
-                type="submit"
-              />
+              <ButtonGroup>
+                <Button
+                  loading={isLoading}
+                  id="tf-form-button-control-public"
+                  content="Transfer Funds"
+                  primary
+                  type="submit"
+                  style={{
+                    "border-radius": 0,
+                  }}
+                />
+                <Link to="/home">
+                  <Button
+                    id="form-button-back-to-home "
+                    content="Cancel"
+                    color="grey"
+                    type="button"
+                    style={{
+                      "margin-left": "1rem",
+                      "border-radius": 0,
+                    }}
+                  />
+                </Link>
+              </ButtonGroup>
             </div>
           </Form>
         </div>
