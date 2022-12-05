@@ -7,7 +7,7 @@ function ViewBalance() {
   const { isLoading, data, error, isError, isFetching } =
     useGetAccountBalanceQuery(userName);
   return (
-    <div className="outlet">
+    <div className="outlet border">
       <div className="prop">Current Balance</div>
       {isFetching ? <p>Fetching Balance...</p> : null}
       <div className="val">{JSON.stringify(data)}</div>

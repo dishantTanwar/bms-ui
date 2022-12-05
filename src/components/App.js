@@ -67,8 +67,8 @@ function App() {
   }, [location]);
 
   return (
-    <div>
-      <div>
+    <>
+      <>
         {isLoading ? (
           <h1>Loading</h1>
         ) : (
@@ -159,8 +159,8 @@ function App() {
             <Footer />
           </div>
         )}
-      </div>
-    </div>
+      </>
+    </>
   );
 }
 

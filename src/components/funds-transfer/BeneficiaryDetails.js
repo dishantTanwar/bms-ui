@@ -63,7 +63,7 @@ function BeneficiaryDetails(props) {
   };
 
   return (
-    <div className="level-2 flex-col">
+    <div className="level-2 flex-col border">
       <h1 className="center">{props.operation} Beneficiary</h1>
       {isError
         ? getExceptionComponent("Add Beneficiary Failed", responseError)

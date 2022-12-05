@@ -22,7 +22,7 @@ function Cards() {
   };
   const [myCard, setMyCard] = useState(generateCard(1020));
   return (
-    <div className="outlet">
+    <div className="outlet border">
       {/* <p>{JSON.stringify(generateCard(1020))}</p> */}
       <div className="card-container flex-col">
         <h1 className="center">Your Card</h1>

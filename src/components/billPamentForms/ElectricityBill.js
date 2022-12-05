@@ -67,8 +67,8 @@ function ElectricityBill() {
     <div className="bill-payment-container">
       {/* <p>{JSON.stringify(responseError)}</p>
       <p>{JSON.stringify(data)}</p> */}
-      <h1 className="center">Electricity Bill</h1>
-      <Form onSubmit={handleSubmit(onSubmit)}>
+      <h1 className="center bottom-border">Electricity Bill</h1>
+      <Form onSubmit={handleSubmit(onSubmit)} className="bills-form">
         {/* <div> */}
         <FormField required inline error={errors.knumber ? true : false}>
           <label>K-Number</label>

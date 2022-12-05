@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
 import { Form } from "semantic-ui-react";
 import "../styles/Register.css";
 
@@ -8,19 +7,16 @@ import { useNavigate } from "react-router-dom";
 import { useSignupMutation } from "../backend-api/accounts";
 import { SECURITY_QUESTIONS, validateUserIsAdult } from "../utils";
 function Register() {
-  const { auth, accounts } = useSelector((store) => store);
   const navigate = useNavigate();
-  const [
-    signup,
-    { isLoading, isError, isFetching, isSuccess, error, data: user },
-  ] = useSignupMutation();
+  const [signup, { isError, isSuccess, error, data: user }] =
+    useSignupMutation();
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm({
-    mode: "onChange",
+    mode: "all",
   });
   const [doesPasswordMatch, setDoesPasswordMatch] = useState(true);
   const onSubmit = async (data, e) => {
@@ -65,7 +61,7 @@ function Register() {
         {isError ? () => <div>{error}</div> : ""}
 
         {/* First NAme */}
-        <Form.Field inline>
+        <Form.Field inline className="form-row">
           <label>First Name</label>
           <input
             placeholder="First Name"
@@ -74,11 +70,11 @@ function Register() {
           />
         </Form.Field>
         {errors.firstName && (
-          <p className="text-error">Please check the First Name</p>
+          <p className="text-error">First Name is required</p>
         )}
 
         {/* Last Name */}
-        <Form.Field inline>
+        <Form.Field inline className="form-row">
           <label>Last Name</label>
           <input
             placeholder="Last Name"
@@ -86,13 +82,11 @@ function Register() {
             {...register("lastName", { required: true, maxLength: 10 })}
           />
         </Form.Field>
-        {errors.lastName && (
-          <p className="text-error">Please check the Last Name</p>
-        )}
+        {errors.lastName && <p className="text-error">Last Name is required</p>}
 
         {/* Email */}
 
-        <Form.Field inline>
+        <Form.Field inline className="form-row">
           <label>Email</label>
           <input
             placeholder="Email"
@@ -104,11 +98,11 @@ function Register() {
             })}
           />
         </Form.Field>
-        {errors.emailId && <p className="text-error">Please check the Email</p>}
+        {errors.emailId && <p className="text-error">Email is required</p>}
 
         {/* Password */}
 
-        <Form.Field inline>
+        <Form.Field inline className="form-row">
           <label>Password</label>
           <input
             placeholder="Password"
@@ -119,10 +113,13 @@ function Register() {
             })}
           />
         </Form.Field>
-        {errors.password && (
+        {errors.password?.type === "required" && (
+          <p className="text-error">Password is required</p>
+        )}
+        {errors.password?.type === "pattern" && (
           <p className="text-error">Password should have more than 7 letters</p>
         )}
-        <Form.Field inline>
+        <Form.Field inline className="form-row">
           <label>Confirm Password</label>
           <input
             placeholder="Confirm Password"
@@ -143,19 +140,22 @@ function Register() {
           />
         </Form.Field>
         {errors.confirmPassword &&
-          errors.confirmPassword.type === "pattern" && (
+          errors.confirmPassword?.type === "pattern" && (
             <p className="text-error">
-              Password should have more than 7 letters. With atleast one
-              uppecase, one special symbol and one number
+              Password should have more than 7 letters.
             </p>
           )}
-        {!doesPasswordMatch && (
+        {errors.confirmPassword &&
+          errors.confirmPassword?.type === "required" && (
+            <p className="text-error">Confirm password is required</p>
+          )}
+        {!errors.confirmPassword && !doesPasswordMatch && (
           <p className="text-error">Password did not match</p>
         )}
 
         {/* Username */}
         <Form.Field inline>
-          <label>Username / Phone Number</label>
+          <label>Phone Number</label>
           <input
             placeholder="Username"
             type="text"
@@ -226,7 +226,7 @@ function Register() {
           </p>
         )}
         <Form.Button
-          className="center"
+          className="center margin-bottom"
           content="Register"
           type="submit"
           primary

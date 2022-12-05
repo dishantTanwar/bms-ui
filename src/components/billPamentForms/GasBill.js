@@ -65,8 +65,8 @@ function GasBill() {
     <div className="bill-payment-container">
       {/* <p>{JSON.stringify(responseError)}</p>
       <p>{JSON.stringify(data)}</p> */}
-      <h1 className="center">Gas Bill</h1>
-      <Form onSubmit={handleSubmit(onSubmit)}>
+      <h1 className="center bottom-border">Gas Bill</h1>
+      <Form onSubmit={handleSubmit(onSubmit)} className="bills-form">
         {/* <div> */}
         <FormField required inline error={errors.customerId ? true : false}>
           <label>Customer ID</label>

@@ -23,7 +23,7 @@ function Login(props) {
 
   const dispatch = useDispatch();
   let tempErrors = "";
-  const [login, { isSuccess, isLoading, isError, error: loginErrors, status }] =
+  const [login, { isSuccess, isLoading, error: loginErrors }] =
     useLoginMutation();
   const auth = useSelector((state) => state.auth);
   useEffect(() => {
@@ -32,6 +32,7 @@ function Login(props) {
     }
   });
   const onSubmit = async (data) => {
+    dispatch(authSlice.actions.logout);
     console.log(data);
     const usernameAndPassword = {
       userName: data.username,
@@ -41,7 +42,7 @@ function Login(props) {
     // power ranger father of nation
 
     try {
-      const { data, originalStatus, error } = await login(
+      const { data, originalStatus } = await login(
         usernameAndPassword
       ).unwrap();
 
@@ -86,9 +87,20 @@ function Login(props) {
       }
     }
   };
+  const loginStyle = {
+    "padding-top": "1rem",
+    // border: "1px solid gray",
+    // "border-radius": "0.375rem",
+    margin: "10% 10%",
+  };
 
   return (
-    <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
+    <Grid
+      textAlign="center"
+      style={loginStyle}
+      verticalAlign="middle"
+      className="login"
+    >
       <Grid.Column>
         <Header
           as="h2"

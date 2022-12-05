@@ -20,7 +20,9 @@ function TransactionHistory() {
           <table>
             <thead>
               <tr>
-                <th colSpan="4">Transaction History</th>
+                <th colSpan="4">
+                  <h3>Transaction History</h3>
+                </th>
               </tr>
               <tr>
                 <th>Transaction ID</th>

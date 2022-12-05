@@ -7,7 +7,7 @@ function FundsTransferSuccess() {
   const transactionDetails = location.state;
   console.log("Transaction success location: ", transactionDetails);
   return (
-    <div>
+    <div className="border">
       <h1 className="success">Transaction Successful</h1>
       <p className="success">
         Your have Successfully transfered an amount of Rs.
@@ -15,7 +15,7 @@ function FundsTransferSuccess() {
         {transactionDetails.beneficiary.name}.
       </p>
       <p>Here are the Transaction details</p>
-      <div className="bill-details">
+      <div className="bill-details border">
         {/* bill id */}
 
         <div className="prop">Transaction ID</div>

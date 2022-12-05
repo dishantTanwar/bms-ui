@@ -8,6 +8,7 @@ function FundsTransferFailed() {
   console.log("Transaction failed: ", error);
   return (
     <Message
+      className="border"
       size="huge"
       error
       header="Transaction Failed"

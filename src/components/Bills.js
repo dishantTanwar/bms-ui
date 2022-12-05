@@ -3,15 +3,15 @@ import { Link, Outlet } from "react-router-dom";
 
 function Bills() {
   return (
-    <div className="outlet level-2">
+    <div className="outlet-bills level-2">
       <div className="side-bar">
-        <Link className="row" to="mobile-recharge">
+        <Link className="row side-bar-item" to="mobile-recharge">
           <strong>Mobile Recharge</strong>
         </Link>
-        <Link className="row" to="electricity-bill">
+        <Link className="row side-bar-item" to="electricity-bill">
           <strong>Electricity Bill</strong>
         </Link>
-        <Link className="row" to="gas-bill">
+        <Link className="row side-bar-item" to="gas-bill">
           <strong>Gas Bill</strong>
         </Link>
       </div>

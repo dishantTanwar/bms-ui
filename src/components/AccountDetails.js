@@ -8,7 +8,7 @@ function AccountDetails() {
     useGetAccountDetailsQuery(userName);
 
   return (
-    <div className="outlet">
+    <div className="outlet border">
       {isLoading ? <h3>Account details are loading</h3> : null}
       {isFetching ? <h3>Fetching account details..</h3> : null}
 
@@ -18,7 +18,6 @@ function AccountDetails() {
           <p>{JSON.stringify(error)}</p>
         </>
       ) : null}
-
       <div className="prop">Account Number</div>
       <div className="val">{data.accountNo}</div>
       <div className="prop">First Name</div>

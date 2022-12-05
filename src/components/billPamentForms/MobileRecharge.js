@@ -65,8 +65,8 @@ function MobileRecharge() {
   };
   return (
     <div className="bill-payment-container">
-      <h1 className="center">Mobile Recharge</h1>
-      <Form onSubmit={handleSubmit(onSubmit)}>
+      <h1 className="center bottom-border">Mobile Recharge</h1>
+      <Form onSubmit={handleSubmit(onSubmit)} className="bills-form">
         {/* <div> */}
         <FormField required inline error={errors.mobileNumber ? true : false}>
           <label>Mobile Number</label>

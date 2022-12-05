@@ -40,7 +40,7 @@ function SelectBeneficiary() {
                 <th>Phone Number</th>
                 <th>Account Number</th>
                 <th>IFSC</th>
-                <th>Select</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -65,32 +65,36 @@ function SelectBeneficiary() {
               ))}
             </tbody>
           </table>
-          <button
-            type="button"
-            onClick={() => {
-              dispatch(
-                beneficiarySlice.actions.selectBeneficiary(selectedBeneficiary)
-              );
-              navigate("..");
-            }}
-          >
-            Select
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              if (selectedBeneficiary) {
+          <div className="flex-row">
+            <button
+              type="button"
+              onClick={() => {
                 dispatch(
-                  beneficiarySlice.actions.unSelectBeneficiary(
+                  beneficiarySlice.actions.selectBeneficiary(
                     selectedBeneficiary
                   )
                 );
-              }
-              navigate("..");
-            }}
-          >
-            Cancel
-          </button>
+                navigate("..");
+              }}
+            >
+              Select
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                if (selectedBeneficiary) {
+                  dispatch(
+                    beneficiarySlice.actions.unSelectBeneficiary(
+                      selectedBeneficiary
+                    )
+                  );
+                }
+                navigate("..");
+              }}
+            >
+              Cancel
+            </button>
+          </div>
         </>
       ) : (
         <p>No beneficiary found! Please add one</p>
