@@ -63,8 +63,8 @@ function BeneficiaryDetails(props) {
   };
 
   return (
-    <div className="level-2 flex-col border">
-      <h1 className="center">{props.operation} Beneficiary</h1>
+    <div className="level-2 flex-col border add-beneficiary-container">
+      <h1 className="center bottom-border">{props.operation} Beneficiary</h1>
       {isError
         ? getExceptionComponent("Add Beneficiary Failed", responseError)
         : null}
@@ -135,7 +135,7 @@ function BeneficiaryDetails(props) {
             </p>
           )}
         </FormField>
-        <div className="payment-option flex-row">
+        <div className="payment-option flex-row center">
           <Button
             loading={isLoading}
             id="form-button-control-public"

@@ -17,6 +17,7 @@ function Register() {
     formState: { errors },
   } = useForm({
     mode: "all",
+    delayError: 500,
   });
   const [doesPasswordMatch, setDoesPasswordMatch] = useState(true);
   const onSubmit = async (data, e) => {
@@ -27,21 +28,23 @@ function Register() {
         userName: data.userName,
         firstName: data.firstName,
         lastName: data.lastName,
-        emailId: data.emailId,
+        emailId: data.emailId.toLowerCase(),
         securityQuestion: data.securityQuestion,
         answer: data.answer,
         password: data.password,
         dateOfBirth: data.dateOfBirth,
       };
       console.log(signupRequestBody);
-
+      let registerSuccess = false;
       try {
         // const response = await signup(signupRequestBody).unwrap();
         await signup(signupRequestBody).unwrap();
+        registerSuccess = true;
       } catch (err) {
+        registerSuccess = true;
         console.error("Failed to signup: ", err);
       } finally {
-        navigate("/home");
+        navigate("/login", { state: { registerSuccess } });
       }
     } else {
       console.log("passwords did not match");
@@ -52,8 +55,8 @@ function Register() {
   // "dateOfBirth": "1022-02-11"
 
   return (
-    <div className="register">
-      <h1 className="center">Register User</h1>
+    <div className="register flex-col border">
+      <h1 className=" bottom-border">Register</h1>
       {/* <h2>{ accounts}</h2> */}
       <Form onSubmit={handleSubmit(onSubmit)}>
         {isSuccess ? () => <h2>LOGIN SUCCESS {user}</h2> : ""}
@@ -61,12 +64,12 @@ function Register() {
         {isError ? () => <div>{error}</div> : ""}
 
         {/* First NAme */}
-        <Form.Field inline className="form-row">
+        <Form.Field inline required className="form-row">
           <label>First Name</label>
           <input
             placeholder="First Name"
             type="text"
-            {...register("firstName", { required: true, maxLength: 10 })}
+            {...register("firstName", { required: true })}
           />
         </Form.Field>
         {errors.firstName && (
@@ -74,19 +77,19 @@ function Register() {
         )}
 
         {/* Last Name */}
-        <Form.Field inline className="form-row">
+        <Form.Field inline required className="form-row">
           <label>Last Name</label>
           <input
             placeholder="Last Name"
             type="text"
-            {...register("lastName", { required: true, maxLength: 10 })}
+            {...register("lastName", { required: true })}
           />
         </Form.Field>
         {errors.lastName && <p className="text-error">Last Name is required</p>}
 
         {/* Email */}
 
-        <Form.Field inline className="form-row">
+        <Form.Field inline required className="form-row">
           <label>Email</label>
           <input
             placeholder="Email"
@@ -98,11 +101,15 @@ function Register() {
             })}
           />
         </Form.Field>
-        {errors.emailId && <p className="text-error">Email is required</p>}
-
+        {errors.emailId?.type === "required" && (
+          <p className="text-error">Email is required</p>
+        )}
+        {errors.emailId?.type === "pattern" && (
+          <p className="text-error">Entet a valid email</p>
+        )}
         {/* Password */}
 
-        <Form.Field inline className="form-row">
+        <Form.Field inline required className="form-row">
           <label>Password</label>
           <input
             placeholder="Password"
@@ -113,20 +120,22 @@ function Register() {
             })}
           />
         </Form.Field>
-        {errors.password?.type === "required" && (
+        {errors?.password?.type === "required" && (
           <p className="text-error">Password is required</p>
         )}
-        {errors.password?.type === "pattern" && (
-          <p className="text-error">Password should have more than 7 letters</p>
+        {errors?.password?.type === "pattern" && (
+          <p className="text-error">
+            Password should be alpha-numeric whith atleast one special character
+          </p>
         )}
-        <Form.Field inline className="form-row">
+        <Form.Field inline required className="form-row">
           <label>Confirm Password</label>
           <input
             placeholder="Confirm Password"
             type="password"
             {...register("confirmPassword", {
               required: true,
-              pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,15}$/,
+              // pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,15}$/,
               onChange: () => {
                 const password = watch("password");
                 const confirmPassword = watch("confirmPassword");
@@ -140,12 +149,6 @@ function Register() {
           />
         </Form.Field>
         {errors.confirmPassword &&
-          errors.confirmPassword?.type === "pattern" && (
-            <p className="text-error">
-              Password should have more than 7 letters.
-            </p>
-          )}
-        {errors.confirmPassword &&
           errors.confirmPassword?.type === "required" && (
             <p className="text-error">Confirm password is required</p>
           )}
@@ -154,21 +157,27 @@ function Register() {
         )}
 
         {/* Username */}
-        <Form.Field inline>
-          <label>Phone Number</label>
+        <Form.Field inline required>
+          <label>Mobile Number</label>
           <input
-            placeholder="Username"
+            placeholder="Mobile Number"
             type="text"
             {...register("userName", {
               required: true,
               pattern: /[1-9][0-9]{9}/,
+              minLength: 10,
+              maxLength: 10,
             })}
           />
         </Form.Field>
-        {errors.userName && (
-          <p className="text-error">Username should have 10 digits</p>
+        {errors?.userName?.type === "required" && (
+          <p className="text-error">Mobile Number is required</p>
         )}
-        <Form.Field inline>
+
+        {["minLength", "maxLength", "pattern"].includes(
+          errors?.userName?.type
+        ) && <p className="text-error">Mobile Number should have 10 digits</p>}
+        <Form.Field inline required>
           <label>Security Question</label>
           <select
             required
@@ -192,21 +201,21 @@ function Register() {
         )}
         {/*  Security Answer */}
 
-        <Form.Field inline>
+        <Form.Field inline required>
           <label>Security Answer</label>
           <input
             placeholder="Security Answer"
             type="text"
             {...register("answer", {
               required: true,
-              minLength: 3,
+              // minLength: 3,
             })}
           />
         </Form.Field>
         {errors.answer && (
-          <p className="text-error">Security Answer should have min 3 size</p>
+          <p className="text-error">Security Answer is required</p>
         )}
-        <Form.Field inline>
+        <Form.Field inline required>
           <label>Date of Birth</label>
           <input
             placeholder="Date of Birth"

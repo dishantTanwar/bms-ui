@@ -3,7 +3,11 @@ import React from "react";
 function Footer() {
   return (
     <footer>
-      Made wih <span>❤️</span> by Cognizant
+      Made with{" "}
+      <span>
+        &nbsp;<div className="heart">❤️</div>&nbsp;
+      </span>{" "}
+      by <b>&nbsp;Cognizant</b>
     </footer>
   );
 }

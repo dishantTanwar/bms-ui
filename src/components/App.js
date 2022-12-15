@@ -32,7 +32,17 @@ import SelectBeneficiary from "./funds-transfer/SelectBeneficiary";
 import SelectedBeneficiary from "./funds-transfer/SelectedBeneficiary";
 import FundsTransferFailed from "./FundsTransferFailed";
 import FundsTransferSuccess from "./FundsTransferSuccess";
-const PageNotFound = () => <div>Page not Found (404)</div>;
+const PageNotFound = () => (
+  <h1
+    className="flex-col center border"
+    style={{
+      margin: "auto",
+      padding: "3rem",
+    }}
+  >
+    Page not Found (404)
+  </h1>
+);
 
 function App() {
   const userName = parseJwt(localStorage.token).sub;
@@ -54,7 +64,7 @@ function App() {
   }
   useEffect(() => {
     if (
-      !["/login", "/register"].includes(location.pathname) &&
+      !["/login", "/register", "/", "/home"].includes(location.pathname) &&
       !isSuccess &&
       !isFetching
     ) {

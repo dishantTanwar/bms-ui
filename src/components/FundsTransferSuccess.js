@@ -7,14 +7,21 @@ function FundsTransferSuccess() {
   const transactionDetails = location.state;
   console.log("Transaction success location: ", transactionDetails);
   return (
-    <div className="border">
-      <h1 className="success">Transaction Successful</h1>
-      <p className="success">
-        Your have Successfully transfered an amount of Rs.
-        {transactionDetails.amount} to beneficiary{" "}
-        {transactionDetails.beneficiary.name}.
-      </p>
-      <p>Here are the Transaction details</p>
+    <div className="border flex-col margin-lr-2rem funds-transfer-success">
+      <div className="flex-row padding-tb-2rem">
+        <div>
+          <h1 className="success">Transaction Successful</h1>
+          <p className="success">
+            Your have Successfully transfered an amount of Rs.
+            {transactionDetails.amount} to beneficiary{" "}
+            {transactionDetails.beneficiary.name}.
+          </p>
+          <p>Here are the Transaction details</p>
+        </div>
+        {/* <div className="border home-link">
+          <Link to="/home">Home</Link>
+        </div> */}
+      </div>
       <div className="bill-details border">
         {/* bill id */}
 
@@ -26,12 +33,15 @@ function FundsTransferSuccess() {
         <div className="val">{transactionDetails.beneficiary.name}</div>
 
         {/* timestamp */}
-        <div className="prop">timestamp</div>
-        <div className="val">{transactionDetails.timestamp}</div>
+        <div className="prop">Timestamp</div>
+
+        <div className="val">
+          {new Date(transactionDetails.timestamp).toString()}
+        </div>
 
         {/* bill number */}
         <div className="prop">Amount</div>
-        <div className="val">{transactionDetails.amount}</div>
+        <div className="val">{transactionDetails.amount} INR</div>
       </div>
     </div>
   );

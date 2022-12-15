@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Button, ButtonGroup, Form, FormField } from "semantic-ui-react";
+import { Button, Form, FormField } from "semantic-ui-react";
 import { useMobileRechargeMutation } from "../../backend-api/billPaymentsApi";
 import "../../index.css";
 import billPaymentsSlice from "../../slices/billPaymentsSlice";
@@ -31,7 +31,7 @@ function MobileRecharge() {
       serviceProviderType: "MOBILE_RECHARGE",
     },
     mode: "onTouched",
-    delayError: 500,
+    delayError: 300,
     // reValidateMode: "onSubmit",
   });
 
@@ -43,7 +43,7 @@ function MobileRecharge() {
         console.log("fulfilled", payload);
         dispatch(
           billPaymentsSlice.actions.success({
-            message: "Mobile Recharge Successful",
+            message: "Phone Bill Successful",
             bill: payload,
           })
         );
@@ -53,7 +53,7 @@ function MobileRecharge() {
         console.error("rejected", error);
         dispatch(
           billPaymentsSlice.actions.failed({
-            message: "Mobile Recharge Failed",
+            message: "Phone Bill Failed",
             error: error,
           })
         );
@@ -64,23 +64,32 @@ function MobileRecharge() {
     navigate("/credit-card");
   };
   return (
-    <div className="bill-payment-container">
-      <h1 className="center bottom-border">Mobile Recharge</h1>
+    <div className="bill-payment-container border">
+      <h1 className="center bottom-border">Phone Bill</h1>
       <Form onSubmit={handleSubmit(onSubmit)} className="bills-form">
         {/* <div> */}
         <FormField required inline error={errors.mobileNumber ? true : false}>
-          <label>Mobile Number</label>
+          <label>Phone Number</label>
           <input
-            placeholder="mobile number to recharge"
+            placeholder="Phone Number"
             {...register("mobileNumber", {
               required: true,
-              minLength: 10,
+              pattern: /[1-9][0-9]{9}/,
               maxLength: 10,
+              minLength: 10,
             })}
           />
-          {errors.mobileNumber && (
+          {errors?.mobileNumber?.type === "required" && (
+            <p className="form-error-message">Phone Number is required</p>
+          )}
+
+          {errors?.mobileNumber?.type === "pattern" && (
+            <p className="form-error-message">Please enter digits only</p>
+          )}
+          {(errors?.mobileNumber?.type === "minLength" ||
+            errors?.mobileNumber?.type === "maxLength") && (
             <p className="form-error-message">
-              Please enter the mobile number you want to recharge
+              Phone Number should have 10 digits
             </p>
           )}
         </FormField>
@@ -92,14 +101,16 @@ function MobileRecharge() {
             {...register("amount", {
               required: true,
               valueAsNumber: true,
-              //   min: 1,
+              validate: (value) => value > 0,
               //   message: "Amount should be greater than Zero",
             })}
           />
-          {errors.amount && (
-            <p className="form-error-message">
-              Amount should be greater than Zero
-            </p>
+          {console.log("errors: ", errors)}
+          {errors?.amount?.type === "required" && (
+            <p className="form-error-message">Amount is required</p>
+          )}
+          {errors?.amount?.type === "validate" && (
+            <p className="form-error-message">Amount should greate than 0</p>
           )}
         </FormField>
         <FormField
@@ -125,29 +136,20 @@ function MobileRecharge() {
           </label>
           <input {...register("securityAnswer", { required: true })} />
           {errors.securityAnswer && (
-            <p className="form-error-message">This is required</p>
+            <p className="form-error-message">Answer is required</p>
           )}
         </FormField>
 
         <div className="payment-option">
-          <h3 className="center">Payment Method</h3>
-          <ButtonGroup size="large">
-            <Button
-              loading={isLoading}
-              id="form-button-control-public"
-              content="Debit Card"
-              primary
-              type="submit"
-            />
-            {/* <ButtonOr />
-            <Button
-              loading={isLoading}
-              id="form-button-control-public"
-              content="Credit Card"
-              onClick={handleCreditCard}
-              secondary
-            /> */}
-          </ButtonGroup>
+          <Button
+            size="large"
+            color="linkedin"
+            loading={isLoading}
+            id="form-button-control-public"
+            content="Pay"
+            // primary
+            type="submit"
+          />
         </div>
       </Form>
     </div>

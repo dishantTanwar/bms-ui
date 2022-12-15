@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Button, ButtonGroup, Form, FormField } from "semantic-ui-react";
+import { Button, Form, FormField } from "semantic-ui-react";
 import { useGasBillPaymentMutation } from "../../backend-api/billPaymentsApi";
 import "../../index.css";
 import billPaymentsSlice from "../../slices/billPaymentsSlice";
@@ -62,7 +62,7 @@ function GasBill() {
     navigate("/credit-card");
   };
   return (
-    <div className="bill-payment-container">
+    <div className="bill-payment-container border">
       {/* <p>{JSON.stringify(responseError)}</p>
       <p>{JSON.stringify(data)}</p> */}
       <h1 className="center bottom-border">Gas Bill</h1>
@@ -132,24 +132,15 @@ function GasBill() {
         </FormField>
 
         <div className="payment-option">
-          <h3 className="center">Payment Method</h3>
-          <ButtonGroup size="large">
-            <Button
-              loading={isLoading}
-              id="form-button-control-public"
-              content="Debit Card"
-              primary
-              type="submit"
-            />
-            {/* <ButtonOr />
-            <Button
-              loading={isLoading}
-              id="form-button-control-public"
-              content="Credit Card"
-              onClick={handleCreditCard}
-              secondary
-            /> */}
-          </ButtonGroup>
+          <Button
+            size="large"
+            color="linkedin"
+            loading={isLoading}
+            id="form-button-control-public"
+            content="Pay"
+            // primary
+            type="submit"
+          />
         </div>
       </Form>
     </div>

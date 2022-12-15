@@ -13,45 +13,75 @@ function Home() {
   return (
     <div className="center home flex-col">
       {/* {!store.auth.isLoggedIn ? navigate("/login") : null} */}
-      <h1 className="center">Home</h1>
+
+      <br />
+      <div className="border">
+        {auth?.user?.firstName ? (
+          <>
+            <h1 className="flex center"> Welcome {auth.user.firstName} </h1>
+          </>
+        ) : (
+          <>
+            <h1 className="flex center"> Welcome to our bank</h1>
+          </>
+        )}
+        <br />
+        <p>
+          You can check your account balance, get your Account statement, Pay
+          your bills, and much more in a secure environment.
+          <br />
+          Our internet banking portal provides personal banking services that
+          gives you complete control over all your banking demands online.
+        </p>
+      </div>
+      <br />
       {auth?.user?.firstName ? (
-        <>
-          <h3> Welcome {auth.user.firstName} </h3>
-        </>
+        <div className="border center flex-col">
+          <h3 className="center bottom-border">Quick Links</h3>
+          <div className="flex-row center" style={{ gap: "1rem" }}>
+            <Link
+              className="border quick-link center"
+              to="/account/account-details"
+            >
+              View Account Details
+            </Link>
+            <Link
+              className="border quick-link center"
+              to="/account/view-balance"
+            >
+              View Account Balance
+            </Link>
+            <Link to="/transfer-funds" className="border quick-link center">
+              Transfer Funds
+            </Link>
+            <Link to="/bills" className="border quick-link center">
+              Pay Bills
+            </Link>
+            <Link to="/history" className="border quick-link center">
+              Transaction History
+            </Link>
+            <p></p>
+          </div>
+        </div>
       ) : (
         <>
-          <h3> Welcome to our bank</h3>
-          <h4>Please Login or Signup to use our services</h4>
+          {/* <h4>Please Login or Signup to use our services</h4> */}
+          <div className="border center flex-col">
+            <h3 className="center">
+              Please Login or Signup to use our services
+            </h3>
+            <div className="flex-row center" style={{ gap: "2rem" }}>
+              <Link className="border quick-link center" to="/login">
+                Login
+              </Link>
+              <Link className="border quick-link center" to="/register">
+                Register
+              </Link>
+              <p></p>
+            </div>
+          </div>
         </>
       )}
-      <p className="border">
-        You can check your account balance, get your Account statement pay your
-        bills, Recharge your mobile and much more in a secure environment
-        <br />
-        Our internet banking portal provides personal banking services that
-        gives you complete control over all your banking demands online.
-      </p>
-      <div className="border center flex-col">
-        <h3 className="center">Quick Links</h3>
-        <div className="flex-row center" style={{ gap: "1rem" }}>
-          <Link className="border" to="/account/account-details">
-            View Account Details
-          </Link>
-          <Link className="border" to="/account/view-balance">
-            View Account Balance
-          </Link>
-          <Link to="/transfer-funds" className="border">
-            Transfer Funds
-          </Link>
-          <Link to="/bills" className="border">
-            Pay Bills
-          </Link>
-          <Link to="/history" className="border">
-            Transaction History
-          </Link>
-          <p></p>
-        </div>
-      </div>
     </div>
   );
 }

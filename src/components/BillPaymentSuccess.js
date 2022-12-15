@@ -16,23 +16,15 @@ function BillPaymentSuccess() {
         <strong>{bills.bill.billNumber}</strong> is Successful
       </p>
       <p>Here are the Bill payment details</p>
-      <div className="bill-details border">
-        {/* bill id */}
-
-        <div className="prop">Bill id</div>
-        <div className="val">{bills.bill.id}</div>
-
-        {/* username */}
+      <div className="bill-details">
+        {/* bill number */}
         <div className="prop">Phone Number</div>
-        <div className="val">{bills.bill.username}</div>
+        <div className="val">{bills.bill.billNumber}</div>
 
         {/* timestamp */}
         <div className="prop">Timestamp</div>
-        <div className="val">{bills.bill.timestamp}</div>
 
-        {/* bill number */}
-        <div className="prop">Bill Number</div>
-        <div className="val">{bills.bill.billNumber}</div>
+        <div className="val">{new Date(bills.bill.timestamp).toString()}</div>
 
         {/* bill type */}
         <div className="prop">Bill Type</div>

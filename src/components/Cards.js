@@ -27,29 +27,27 @@ function Cards() {
       <div className="card-container flex-col">
         <h1 className="center">Your Card</h1>
         <div className="card">
-          <h3>Bank of Manchester</h3>
+          <h3 className="flex center">Bank of Manchester</h3>
 
           {/* <p>{`${myCard.cardno.toString().slice(0, 4)}-${myCard.cardno
             .toString()
             .slice(4, 8)}-${myCard.cardno
             .toString()
             .slice(8, 12)}-${myCard.cardno.toString().slice(12)}`}</p> */}
-          <p className="center">{`${8978} - XXXX - XXXX - ${myCard.cardno
+          <p>{`${8978} - XXXX - XXXX - ${myCard.cardno
             .toString()
             .slice(12)}`}</p>
-          <div className="flex-row center">
+          <div className="flex-row ">
             <p
               style={{
                 paddingRight: "1rem",
               }}
             >
-              <strong>VAlID THRU</strong> {myCard.validthru}
+              VALID THRU {myCard.validthru}
             </p>
-            <p>
-              <strong>CVV</strong> {myCard.cvv}
-            </p>
+            <p> CVV {myCard.cvv}</p>
           </div>
-          <strong>{`${user.firstName} ${user.lastName}`}</strong>
+          <p>{`${user.firstName} ${user.lastName}`}</p>
         </div>
       </div>
     </div>

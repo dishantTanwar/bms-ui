@@ -9,7 +9,7 @@ function SelectedBeneficiary(props) {
         <col />
       </colgroup>
       <thead>
-        <tr>
+        <tr>  
           <th>Name</th>
           <th>Phone Number</th>
           <th>Account Number</th>

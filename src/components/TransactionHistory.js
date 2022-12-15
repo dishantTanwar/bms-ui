@@ -20,14 +20,14 @@ function TransactionHistory() {
           <table>
             <thead>
               <tr>
-                <th colSpan="4">
+                <th colSpan="4" className="padding-tb-2rem">
                   <h3>Transaction History</h3>
                 </th>
               </tr>
               <tr>
                 <th>Transaction ID</th>
                 <th>To</th>
-                <th>timestamp</th>
+                <th>Timestamp</th>
                 <th>Amount</th>
               </tr>
             </thead>

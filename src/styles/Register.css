@@ -1,3 +1,5 @@
 .text-error {
-	color: brown;
+  color: brown;
+  width: 45ch;
+  font-size: small;
 }

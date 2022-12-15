@@ -11,52 +11,84 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 } */
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&family=Quicksand:wght@400;500&family=Roboto:wght@400;500;700&display=swap");
+:root {
+  /* --shadow: 2px 4px 8px 2px rgb(46 61 73 / 20%); */
+  /* --shadow: 1px 1px 9px -3px rgb(46 61 73 / 20%); */
+  --shadow-nav: 2px 4px 8px 2px rgb(46 61 73 / 20%);
+  --shadow: 3px 3px 3px -2px rgb(46 61 73 / 20%);
+  --background-color: #f1eadc;
+}
 *,
 :after,
 :before {
   box-sizing: border-box;
   margin: 0%;
-  font-family: Geneva, Tahoma, sans-serif;
+  font-family: "Roboto", Tahoma, sans-serif;
+}
+p,
+div {
+  font-family: "Poppins", sans-serif;
 }
 h1,
 h2,
 h3,
 h4 {
+  font-family: "Roboto";
   color: darkslategray;
 }
+td {
+  font-size: small;
+}
+label {
+  font-size: medium !important;
+  /* font-weight: 400; */
+  font-family: "Lato";
+}
+.font-large {
+  font-size: 18px;
+}
+
 .App {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: oldlace;
+  /* background-color: oldlace; */
+  background-color: var(--background-color);
 }
 .body-component {
-  width: 80%;
-  background-color: oldlace;
+  width: 100%;
+  margin: auto;
+  /* background-color: oldlace; */
+  background-color: var(--background-color);
+
   height: 100%;
   align-self: center;
-  flex-grow: 10;
   padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
 }
 .view-balance {
 }
 .level-2 {
   display: flex;
-  background: oldlace;
+  background-color: var(--background-color);
+
   flex-direction: row;
   justify-content: center;
   margin: 0 auto;
+  width: 100%;
 }
 .side-bar {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
-  min-width: 20%;
-  padding: 2rem;
-  border: 1px solid #00000096;
-  height: 70vh;
-  margin: 1rem;
+  width: max(20%, 25ch);
+  padding: 2rem 1.5rem !important;
+  /* border-top: 2px solid indianred; */
+  min-height: 70vh;
+  margin-right: 1rem;
+  box-shadow: var(--shadow);
+  /* border-bottom: 25ch solid indianred; */
 }
 .outlet {
   flex-grow: 2;
@@ -69,7 +101,8 @@ h4 {
   justify-items: center;
   align-items: center;
   width: 100%;
-  margin: 1rem;
+  margin: 0 1rem;
+  min-width: 42ch;
 }
 .outlet-bills {
   display: inline-flex;
@@ -88,6 +121,9 @@ h4 {
   border-radius: 2rem;
 }
 strong {
+  font-weight: bold;
+}
+.prop {
   font-weight: 500;
 }
 .prop,
@@ -102,17 +138,21 @@ strong {
 .form-error-message,
 .error-message {
   display: block !important;
-  padding-left: 20ch;
-  width: 50ch !important;
+  /* padding-left: 19.5ch; */
+  /* width: 46ch !important; */
   color: brown !important;
   margin-top: 0.5rem !important;
   font-size: small !important;
   font-weight: normal !important;
+
+  padding-left: 19.7ch;
+  width: 40ch !important;
 }
 .payment-option {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  padding: 5px 0;
 }
 .center {
   display: flex;
@@ -122,7 +162,6 @@ strong {
 .bill-details {
   display: grid;
   grid-template-areas: "prop val";
-  background-color: linen;
 }
 
 .success {
@@ -132,16 +171,20 @@ strong {
 .flex-col {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .flex-row {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .flex-form {
   flex-grow: 1;
-  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .beneficiary-container {
   background-color: gainsboro;
@@ -154,9 +197,10 @@ strong {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem 0;
   border: 1px solid gray;
   border-radius: 0.375rem;
+  margin: 0 2rem;
+  padding: 2rem;
 }
 
 table {
@@ -204,11 +248,9 @@ footer {
   /* bottom: 0; */
   width: 100%;
   height: 7ch;
-  flex-grow: 1;
 }
-
 .transaction-history {
-  /* padding: 1rem; */
+  padding: 0 5%;
 }
 .funds-transfer-container {
   flex-grow: 5;
@@ -216,23 +258,28 @@ footer {
   flex-direction: column;
   padding-top: 2rem;
   border: 1px solid gray;
-  margin: 1rem 0;
+  border-radius: 0.375rem;
+  width: 90%;
+  margin: auto;
   background: linen;
   padding-bottom: 1rem;
 }
 .bill-payment-container {
   display: flex;
   flex-direction: column;
-  flex-grow: 5;
   padding-top: 2rem;
   border: 1px solid gray;
-  margin: 1rem 0;
   background: linen;
+  margin: 0 1rem;
+  border-radius: 0.375rem;
+  width: 100%;
+  justify-content: center;
 }
 .bills-form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-left: 1rem;
 }
 
 .logo-img {
@@ -247,8 +294,8 @@ footer {
 }
 
 .ui.form > p {
-  margin: 1em 0;
-  padding-left: 19ch;
+  margin-top: -0.7em;
+  padding-left: 20ch;
 }
 
 .margin-bottom {
@@ -258,31 +305,66 @@ footer {
 .funds-transfer {
   display: flex;
   flex-direction: row;
-  width: 100%;
 }
 
 .border {
-  border: 1px solid gray;
   border-radius: 0.375rem;
-  padding: 1rem;
-  background: #ffecde9c;
+  border-radius: 0.6rem;
+
+  padding: 1.4rem;
+  background: #fff8f4ef;
+
+  border: 1px solid rgba(128, 128, 128, 0.347);
+  /* border-radius: 0.575rem;  */
+  padding: 1.2rem;
+  box-shadow: var(--shadow);
+  /* background: #ffffff91;  */
 }
 .payment-success {
-  /* width: 70%; */
+  width: 80%;
+  margin: auto;
+  padding: 3rem;
 }
 .side-bar-item {
+  /* padding: 0 1rem; */
   padding-top: 0.5rem;
+  margin-bottom: 1rem;
+
   /* color: darkslategray; */
+  transition: background-color 0.2s ease-in-out, color 0.3s 0.01s ease-in-out,
+    border-left 0.1s ease-in-out, padding-left 0.14s ease-in-out;
 }
 .side-bar-item :hover {
   color: indianred;
+  /* font-size: 1.3rem; */
+  /* transform: scale(1.1); */
+  /* font-stretch: expanded; */
   /* border-bottom: 2px solid indianred; */
+}
+.row {
+  font-size: medium;
+}
+.row:hover {
+  padding-left: 0.5rem;
+  color: indianred;
+  border-left: 4px solid indianred;
+  /* transform: scale(1.1); */
+  /* background-color: linen; */
+}
+.col {
+  font-size: medium;
+  transition: color 0.1s ease-in-out, border-bottom 0.1s ease-in-out;
+}
+.col:hover {
+  padding-bottom: 0.5rem;
+  color: indianred;
+  border-bottom: 4px solid indianred;
 }
 
 .funds-transfer-section-1 {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
 }
 .funds-transfer-section-2 {
   display: flex;
@@ -293,14 +375,93 @@ footer {
 a {
   color: darkslategray;
 }
-a:hover {
-  color: indianred;
-  /* font-size: medium; */
-  background-color: rgba(0, 0, 0, 0.08);
-  /* background-color: #ffd7ba98; */
-}
 
 .bottom-border {
-  border-bottom: 1px solid gray;
+  border-bottom: 2px solid indianred;
   padding-bottom: 1rem;
+  margin: 0 2rem 2rem 2rem;
+}
+
+.home,
+.funds-transfer {
+  width: 80%;
+  margin: auto;
+}
+.home-link {
+  align-self: flex-end;
+}
+.shadow {
+  /* box-shadow: var(--shadow, 2px 4px 8px 2px rgb(46 61 73 / 20%)); */
+  /* background: oldlace;
+  border-radius: 0.375rem; */
+}
+
+.add-beneficiary-container {
+  width: 80%;
+  margin: auto;
+  background-color: linen;
+  padding-top: 2rem;
+  margin-top: -1rem;
+}
+
+.padding-lr-1rem {
+  padding: 0 1rem;
+}
+.padding-lr-2rem {
+  padding: 0 2rem;
+}
+.padding-tb-1rem {
+  padding: 1rem 0;
+}
+.padding-tb-2rem {
+  padding: 2rem 0;
+}
+.margin-lr-2rem {
+  margin: 0 2rem;
+}
+
+.quick-link {
+  font-weight: bolder;
+  align-items: center;
+  flex-grow: 1;
+  flex-basis: 10ch;
+  flex-shrink: 1;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out,
+    font-size 0.3s 0.01s ease-in-out, scale 0.1s ease-in-out;
+}
+
+.quick-link:hover {
+  color: oldlace;
+  background-color: indianred;
+  scale: 1.05;
+  font-size: 1.3rem;
+  box-shadow: var(--shadow);
+}
+
+.heart {
+  transition: transform 0.3s ease-in-out, padding 0.28s ease-in-out;
+}
+.heart:hover {
+  transform: translateY(-0.55rem) scale(1.3);
+  padding: 0 0.3rem;
+}
+.select-beneficiary-btn {
+  flex-grow: 1;
+  border: 1px solid darkgray;
+  background: linen;
+  border-radius: 0.375rem;
+  margin: 1rem;
+  background: #ffe9e994;
+  padding: 1rem 0;
+}
+.select-beneficiary-btn:hover {
+  background-color: rgba(231, 128, 128, 0.258);
+  box-shadow: var(--shadow);
+}
+
+.funds-transfer-success {
+  margin: auto;
+  width: 80%;
+  padding: 2rem;
+  gap: 1rem;
 }
